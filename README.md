@@ -21,4 +21,8 @@
 * read, exit
 * signal
 
-AND the __termcap__ library.
+## TO DO:
+
+- [x] put terminal in raw mode
+- [x] do not echo stdin
+- [ ] move cursor horizontally
