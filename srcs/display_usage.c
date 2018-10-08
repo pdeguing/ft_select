@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 10:10:23 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/06 10:11:30 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/08 10:55:00 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int		display_usage(void)
 {
-	ft_printf("usage: ft_select <arg> <...>\n");
+	ft_putendl("usage: ft_select <arg> <...>");
 	return (0);
 }

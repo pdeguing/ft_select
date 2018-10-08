@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select.c                                        :+:      :+:    :+:   */
+/*   select_loop.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/06 10:08:08 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/08 12:37:38 by pdeguing         ###   ########.fr       */
+/*   Created: 2018/10/08 11:02:43 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/10/08 12:29:24 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int		main(int ac, char **av)
+void	select_loop(char **av)
 {
-	t_termios	original;
+	int		i;
+	char	c;
 
-	if (ac < 2)
-		return (display_usage());
-	enable_raw_mode(&original);
-	select_loop(av + 1);
-	disable_raw_mode(&original);
-	return (0);
+	while (1)
+	{
+		ft_printf("\x1b[2J"); 
+		i = 0;
+		while (av[i] != NULL)
+		{
+			ft_printf("%s%c", av[i], ' ');
+			i++;
+		}
+		read(0, &c, 1);
+		if (c == 'h')
+			ft_printf("\x1b[%d;%dH", 20, 20); 
+		if (c == 'q')
+			return ;
+	}
 }

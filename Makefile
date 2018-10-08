@@ -6,7 +6,7 @@
 #    By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/25 10:01:06 by pdeguing          #+#    #+#              #
-#    Updated: 2018/10/06 10:15:54 by pdeguing         ###   ########.fr        #
+#    Updated: 2018/10/08 11:09:01 by pdeguing         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,7 @@ CFLAGS	= -Wall -Wextra -Werror
 
 NAME	= ft_select
 
-SRCS	= srcs/ft_select.c \
-		  srcs/display_usage.c
+SRCS	= srcs/*.c
 
 LIB		= -lft -L./libft/
 LIBFT	= libft/libft.a

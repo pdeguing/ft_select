@@ -25,4 +25,4 @@
 
 - [x] put terminal in raw mode
 - [x] do not echo stdin
-- [ ] move cursor horizontally
+- [x] move cursor
