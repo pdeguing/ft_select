@@ -6,7 +6,7 @@
 #    By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/25 10:01:06 by pdeguing          #+#    #+#              #
-#    Updated: 2018/10/08 11:09:01 by pdeguing         ###   ########.fr        #
+#    Updated: 2018/10/09 15:09:52 by pdeguing         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ $(LIBFT):
 	@ cd libft/ && make
 
 cmp:
-	@ gcc -o $(NAME) $(CFLAGS) $(SRCS) -Iincludes $(LIB)
+	@ gcc -o $(NAME) $(CFLAGS) $(SRCS) -Iincludes $(LIB) -ltermcap
 
 clean:
 	@ /bin/rm -f *.o
