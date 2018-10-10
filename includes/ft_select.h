@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 10:11:36 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/10 06:11:30 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/10 12:27:51 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 # include <stdbool.h>
 # include "../libft/includes/libft.h"
 
-# define ENTER_KEY 10
+# define ENTER_KEY	10
+# define SPACE_KEY	32
+# define ESC_KEY	27
 
 /*
 ** TYPEDEF
@@ -54,13 +56,14 @@ extern short ospeed;
 
 struct s_tcaps
 {
-	char	*move_right;
-	char	*move_left;
 	char	*clear_down;
 	char	*clear_all;
-	char	*standout_on;
-	char	*standout_off;
+	char	*standout;
+	char	*underlined;
+	char	*reverse;
 	char	*cursor_inv;
+	char	*cursor_dft;
+	char	*reset;
 };
 
 /*
@@ -77,7 +80,7 @@ struct s_dlist
 };
 
 void				get_dlist(t_dlist **dlist, char **av, int n);
-void				print_dlist(t_select *s);
+void				print_dlist(t_select *s, int fd, bool only_selected);
 
 void				enable_raw_mode(t_termios *original);
 void				disable_raw_mode(t_termios *original);
