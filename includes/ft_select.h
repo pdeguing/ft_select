@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 10:11:36 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/09 17:54:19 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/10 06:11:30 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,75 @@
 # include <stdio.h>
 # include <termios.h>
 # include <termcap.h>
+# include <stdbool.h>
 # include "../libft/includes/libft.h"
+
+# define ENTER_KEY 10
+
+/*
+** TYPEDEF
+*/
+
+typedef struct s_select	t_select;
+typedef struct s_tcaps	t_tcaps;
+typedef struct s_dlist	t_dlist;
+typedef struct termios	t_termios;
+
+/*
+** GLOBAL STRUCTURE
+*/
+
+struct s_select
+{
+	t_tcaps		*tc;
+	t_termios	*original;
+	t_dlist		**dlist;
+	t_dlist		*cursor;
+};
+
+/*
+** TERMINAL CAPABILITIES
+*/
 
 extern char PC;
 extern char * UP;
 extern char * BC;
 extern short ospeed;
 
-typedef struct termios	t_termios;
-
-typedef struct s_termcaps	t_termcaps;
-
-struct s_termcaps
+struct s_tcaps
 {
 	char	*move_right;
 	char	*move_left;
+	char	*clear_down;
 	char	*clear_all;
 	char	*standout_on;
 	char	*standout_off;
 	char	*cursor_inv;
 };
 
-void	init_term(t_termios *original, t_termcaps *tc);
-void	enable_raw_mode(t_termios *original);
-void	disable_raw_mode(t_termios *original);
+/*
+** ARGUMENTS LIST 
+*/
 
-void	select_loop(char **av, t_termcaps *tc);
+struct s_dlist
+{
+	t_dlist			*prev;
+	char			*name;
+	bool			is_cursor;
+	bool			is_selected;
+	t_dlist			*next;
+};
 
-int		display_usage(void);
+void				get_dlist(t_dlist **dlist, char **av, int n);
+void				print_dlist(t_select *s);
+
+void				enable_raw_mode(t_termios *original);
+void				disable_raw_mode(t_termios *original);
+
+t_select			*init_select(char **av, int n);
+
+void				select_loop(t_select *s);
+
+int					display_usage(void);
 
 #endif

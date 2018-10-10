@@ -6,48 +6,44 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/08 11:02:43 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/09 17:54:18 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/10 06:15:22 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void	select_loop(char **av, t_termcaps *tc)
+void	select_loop(t_select *s)
 {
 	int		i;
 	char	c;
-	int		cursor;
 
-	ft_putstr(tc->cursor_inv);
-	cursor = 0;
+	ft_putstr(s->tc->cursor_inv);
 	while (1)
 	{
 		i = 0;
-		ft_putstr(tc->clear_all);
-		while (av[i] != NULL)
-		{
-			if (cursor == i)
-				ft_putstr(tc->standout_on);
-			ft_putstr(av[i]);
-			ft_putstr(tc->standout_off);
-			if (av[i + 1] != NULL)
-				ft_putchar(' ');
-			i++;
-		}
+		ft_putchar('\r');
+		ft_putstr(s->tc->clear_down);
+		print_dlist(s);
 		read(0, &c, 1);
 		if (c == 'h')
 		{
-			ft_putstr(tc->move_left);
-			cursor--;
+			s->cursor->is_cursor = false;
+			s->cursor = s->cursor->prev;
+			s->cursor->is_cursor = true;
 		}
 		if (c == 'l')
 		{
-			ft_putstr(tc->move_right);
-			cursor++;
+			s->cursor->is_cursor = false;
+			s->cursor = s->cursor->next;
+			s->cursor->is_cursor = true;
 		}
 		if (c == 'c')
-			ft_putstr(tc->clear_all);
-		if (c == 'q')
+			ft_putstr(s->tc->clear_all);
+		if (c == ENTER_KEY)
+		{
+			ft_putchar('\r');
+			ft_putstr(s->tc->clear_down);
 			return ;
+		}
 	}
 }
