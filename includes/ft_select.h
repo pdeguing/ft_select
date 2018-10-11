@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 10:11:36 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/10 12:27:51 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/11 12:09:39 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 # include <stdbool.h>
 # include "../libft/includes/libft.h"
 
-# define ENTER_KEY	10
-# define SPACE_KEY	32
-# define ESC_KEY	27
+# define BACKSPACE_KEY	8
+# define ENTER_KEY		10
+# define ESC_KEY		27
+# define SPACE_KEY		32
 
 /*
 ** TYPEDEF
@@ -42,7 +43,7 @@ struct s_select
 	t_tcaps		*tc;
 	t_termios	*original;
 	t_dlist		**dlist;
-	t_dlist		*cursor;
+	t_dlist		**cursor;
 };
 
 /*
@@ -74,11 +75,11 @@ struct s_dlist
 {
 	t_dlist			*prev;
 	char			*name;
-	bool			is_cursor;
 	bool			is_selected;
 	t_dlist			*next;
 };
 
+void				remove_node(t_dlist **pcursor);
 void				get_dlist(t_dlist **dlist, char **av, int n);
 void				print_dlist(t_select *s, int fd, bool only_selected);
 

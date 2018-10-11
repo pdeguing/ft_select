@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 03:54:55 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/10 12:43:58 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/11 10:35:55 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_dlist(t_select *s, int fd, bool only_selected)
 	{
 		if(!only_selected)
 		{
-			if (current->is_cursor)
+			if (current == *s->cursor)
 				ft_putstr_fd(s->tc->underlined, fd);
 			if (current->is_selected)
 				ft_putstr_fd(s->tc->reverse, fd);

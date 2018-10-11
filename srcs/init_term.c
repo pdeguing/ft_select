@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 14:56:33 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/10 12:16:43 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/11 10:35:47 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,11 @@ t_select	*init_select(char **av, int n)
 	s->dlist = (t_dlist **)malloc(sizeof(t_dlist *));
 	if (s->dlist == NULL)
 		perror("init_select");
+	s->cursor = (t_dlist **)malloc(sizeof(t_dlist *));
+	if (s->cursor == NULL)
+		perror("init_select");
 	init_term(&s->tc);
 	get_dlist(s->dlist, av, n);
-	s->cursor = *s->dlist;
+	*s->cursor = *s->dlist;
 	return (s);
 }

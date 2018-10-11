@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 02:50:34 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/10 05:49:11 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/11 12:01:52 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void		push_node(t_dlist **head, char *name)
 		perror("push_node");
 	new->prev = NULL;
 	new->name = ft_strdup(name);
-	new->is_cursor = false;
 	new->is_selected = false;
 	new->next = *head;
 	if (*head != NULL)
@@ -45,5 +44,4 @@ void	get_dlist(t_dlist **head, char **av, int n)
 		tail = tail->next;
 	tail->next = *head;
 	(*head)->prev = tail;
-	(*head)->is_cursor = true;
 }
