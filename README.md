@@ -31,15 +31,15 @@
 
 ###	Selection:
 * ~~clear screen as relevant~~
-* ~~print arguments:
-	* double linked list
-	* link to previous
-	* argument string
-	* bool for current
-	* bool for selected
-	* link to next
-	* if current then underline 
-	* if selected then reverse video~~ 
+* ~~print arguments:~~
+	* ~~double linked list~~
+	* ~~link to previous~~
+	* ~~argument string~~
+	* ~~bool for current~~
+	* ~~bool for selected~~
+	* ~~link to next~~
+	* ~~if current then underline~~
+	* ~~if selected then reverse video~~ 
 * move cursor from word to word
 	* up: set current to 0 and do next (narg / nline) times and set current to 1
 	* down: set current to 0 and do previous (narg / nline) times and set current to 1
@@ -52,10 +52,10 @@
 
 
 ### Window management:
-* ~~while win_width < size of line:
-	* nline++ 
-* print narg / nline per line
-* if win_height < nline print error display~~
+* ~~while win_width < size of line:~~
+	* ~~nline++~~
+* ~~print narg / nline per line~~
+* ~~if win_height < nline print error display~~
 * find a way to update on resizing even if no key is pressed
 
 ### Signal management:
