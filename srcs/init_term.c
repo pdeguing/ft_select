@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 14:56:33 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/11 10:35:47 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/11 15:40:43 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ static void		init_term(t_tcaps **tc)
 	new->standout = tgetstr("so", NULL);
 	new->underlined = tgetstr("us", NULL);
 	new->reverse = tgetstr("mr", NULL);
-	new->cursor_inv = tgetstr("vi", NULL);
-	new->cursor_dft = tgetstr("ve", NULL);
+	new->c_save = tgetstr("sc", NULL);
+	new->c_restore = tgetstr("rc", NULL);
+	new->c_hide = tgetstr("vi", NULL);
+	new->c_default = tgetstr("ve", NULL);
 	new->reset = tgetstr("me", NULL);
 }
 
@@ -53,7 +55,7 @@ t_select	*init_select(char **av, int n)
 	if (s->cursor == NULL)
 		perror("init_select");
 	init_term(&s->tc);
-	get_dlist(s->dlist, av, n);
+	get_dlist(s, av, n);
 	*s->cursor = *s->dlist;
 	return (s);
 }

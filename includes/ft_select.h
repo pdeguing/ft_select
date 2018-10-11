@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 10:11:36 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/11 12:09:39 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/11 15:34:57 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <termios.h>
 # include <termcap.h>
 # include <stdbool.h>
+# include <sys/ioctl.h>
 # include "../libft/includes/libft.h"
 
 # define BACKSPACE_KEY	8
@@ -33,6 +34,7 @@ typedef struct s_select	t_select;
 typedef struct s_tcaps	t_tcaps;
 typedef struct s_dlist	t_dlist;
 typedef struct termios	t_termios;
+typedef struct winsize	t_winsize;
 
 /*
 ** GLOBAL STRUCTURE
@@ -44,16 +46,18 @@ struct s_select
 	t_termios	*original;
 	t_dlist		**dlist;
 	t_dlist		**cursor;
+	int			min_col;
+	int			min_row;
 };
 
 /*
 ** TERMINAL CAPABILITIES
 */
 
-extern char PC;
-extern char * UP;
-extern char * BC;
-extern short ospeed;
+extern char		PC;
+extern char		*UP;
+extern char		*BC;
+extern short	ospeed;
 
 struct s_tcaps
 {
@@ -62,8 +66,10 @@ struct s_tcaps
 	char	*standout;
 	char	*underlined;
 	char	*reverse;
-	char	*cursor_inv;
-	char	*cursor_dft;
+	char	*c_save;
+	char	*c_restore;
+	char	*c_hide;
+	char	*c_default;
 	char	*reset;
 };
 
@@ -79,9 +85,12 @@ struct s_dlist
 	t_dlist			*next;
 };
 
+t_winsize			get_winsize(void);
+
 void				remove_node(t_dlist **pcursor);
-void				get_dlist(t_dlist **dlist, char **av, int n);
-void				print_dlist(t_select *s, int fd, bool only_selected);
+void				get_dlist(t_select *s, char **av, int n);
+void				display_dlist(t_select *s, int w_col, int w_row);
+void				print_dlist(t_select *s);
 
 void				enable_raw_mode(t_termios *original);
 void				disable_raw_mode(t_termios *original);

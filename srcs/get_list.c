@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 02:50:34 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/11 12:01:52 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/11 15:19:10 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,26 @@ static void		push_node(t_dlist **head, char *name)
 
 }
 
-void	get_dlist(t_dlist **head, char **av, int n)
+void	get_dlist(t_select *s, char **av, int n)
 {
 	t_dlist	*tail;
+	int		len;
 
-	*head = NULL;
+	len = 0;
+	s->min_col = 0;
+	s->min_row = n;
+	*s->dlist = NULL;
 	while (n > 0)
 	{
-		push_node(head, av[n]);
+		push_node(s->dlist, av[n]);
+		len = ft_strlen((*s->dlist)->name);
+		if (len > s->min_col)
+			s->min_col = len;
 		n--;
 	}
-	tail = *head;
+	tail = *s->dlist;
 	while (tail->next != NULL)
 		tail = tail->next;
-	tail->next = *head;
-	(*head)->prev = tail;
+	tail->next = *s->dlist;
+	(*s->dlist)->prev = tail;
 }

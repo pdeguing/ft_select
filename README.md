@@ -30,8 +30,8 @@
 ----------------------------------
 
 ###	Selection:
-* clear screen as relevant
-* print arguments:
+* ~~clear screen as relevant~~
+* ~~print arguments:
 	* double linked list
 	* link to previous
 	* argument string
@@ -39,23 +39,24 @@
 	* bool for selected
 	* link to next
 	* if current then underline 
-	* if selected then reverse video 
+	* if selected then reverse video~~ 
 * move cursor from word to word
 	* up: set current to 0 and do next (narg / nline) times and set current to 1
 	* down: set current to 0 and do previous (narg / nline) times and set current to 1
-	* right: set current to 0 and do next once and set current to 1
-	* left: set current to 0 and do previous once and set current to 1
-* if space key then current.selected = 1 and reprint all
-* if del or backspace key then remove current and reprint all
-* if enter key then print nodes selected to stdout and exit
-* if esc key then exit
+	* ~~right: set current to 0 and do next once and set current to 1~~
+	* ~~left: set current to 0 and do previous once and set current to 1~~
+* ~~if space key then current.selected = 1 and reprint all~~
+* ~~if del or backspace key then remove current and reprint all~~
+* ~~if enter key then print nodes selected to stdout and exit~~
+* ~~if esc key then exit~~
 
 
 ### Window management:
-* while win_width < size of line:
+* ~~while win_width < size of line:
 	* nline++ 
 * print narg / nline per line
-* if win_height < nline print error display
+* if win_height < nline print error display~~
+* find a way to update on resizing even if no key is pressed
 
 ### Signal management:
 * catch quit signal and close with clean_exit if appropriate
@@ -63,3 +64,9 @@
 
 ### Env management:
 * if env not set properly, display error env
+
+### Input keys:
+* handle arrows and del/backspace
+
+### Exit:
+* create proper exit function and use for each appropriate event
