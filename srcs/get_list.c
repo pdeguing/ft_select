@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 02:50:34 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/11 15:19:10 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/11 19:02:15 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ void	get_dlist(t_select *s, char **av, int n)
 	int		len;
 
 	len = 0;
-	s->min_col = 0;
-	s->min_row = n;
+	s->max_len = 0;
+	s->lst_size = n;
 	*s->dlist = NULL;
 	while (n > 0)
 	{
 		push_node(s->dlist, av[n]);
 		len = ft_strlen((*s->dlist)->name);
-		if (len > s->min_col)
-			s->min_col = len;
+		if (len > s->max_len)
+			s->max_len = len;
 		n--;
 	}
 	tail = *s->dlist;

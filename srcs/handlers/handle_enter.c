@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select.c                                        :+:      :+:    :+:   */
+/*   handle_enter.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/06 10:08:08 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/11 17:24:55 by pdeguing         ###   ########.fr       */
+/*   Created: 2018/10/11 17:50:33 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/10/11 17:52:34 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int		main(int ac, char **av)
+void	handle_enter(t_select *s)
 {
-	t_select	*s;
-
-	if (ac < 2)
-		return (display_usage());
-	s = init_select(av, ac -1);
-	enable_raw_mode(s->original);
-	ft_putstr_fd(s->tc->c_hide, STDERR_FILENO);
-	select_loop(s);
-	ft_putstr_fd(s->tc->c_default, STDERR_FILENO);
-	disable_raw_mode(s->original);
-	print_dlist(s);
-	return (0);
+	ft_putchar_fd('\r', STDERR_FILENO);
+	ft_putstr_fd(s->tc->clear_down, STDERR_FILENO);
+	exit(EXIT_SUCCESS);
 }

@@ -40,9 +40,9 @@
 	* ~~link to next~~
 	* ~~if current then underline~~
 	* ~~if selected then reverse video~~ 
-* move cursor from word to word
-	* up: set current to 0 and do next (narg / nline) times and set current to 1
-	* down: set current to 0 and do previous (narg / nline) times and set current to 1
+* ~~move cursor from word to word~~
+	* ~~up: set current to 0 and do next (narg / nline) times and set current to 1~~
+	* ~~down: set current to 0 and do previous (narg / nline) times and set current to 1~~
 	* ~~right: set current to 0 and do next once and set current to 1~~
 	* ~~left: set current to 0 and do previous once and set current to 1~~
 * ~~if space key then current.selected = 1 and reprint all~~
@@ -66,7 +66,7 @@
 * if env not set properly, display error env
 
 ### Input keys:
-* handle arrows and del/backspace
+* handle ~~arrows~~ and del/backspace
 
 ### Exit:
 * create proper exit function and use for each appropriate event

@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 14:56:33 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/11 15:40:43 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/11 19:02:56 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,20 @@ static void		init_term(t_tcaps **tc)
 	new->reset = tgetstr("me", NULL);
 }
 
+static void		init_dispatch(t_dispatch **key_handlers)
+{
+	static t_dispatch	new[TOTAL_KEYS] = {
+		{ENTER_KEY, &handle_enter},
+		{SPACE_KEY, &handle_space},
+		{UP_KEY, &handle_up},
+		{DOWN_KEY, &handle_down},
+		{LEFT_KEY, &handle_left},
+		{RIGHT_KEY, &handle_right}
+	};
+
+	*key_handlers = new;
+}
+
 t_select	*init_select(char **av, int n)
 {
 	t_select	*s;
@@ -55,6 +69,7 @@ t_select	*init_select(char **av, int n)
 	if (s->cursor == NULL)
 		perror("init_select");
 	init_term(&s->tc);
+	init_dispatch(&s->key_handlers);
 	get_dlist(s, av, n);
 	*s->cursor = *s->dlist;
 	return (s);

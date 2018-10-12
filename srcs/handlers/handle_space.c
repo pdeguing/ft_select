@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select.c                                        :+:      :+:    :+:   */
+/*   handle_space.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/06 10:08:08 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/11 17:24:55 by pdeguing         ###   ########.fr       */
+/*   Created: 2018/10/11 17:52:47 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/10/11 17:53:27 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int		main(int ac, char **av)
+void	handle_space(t_select *s)
 {
-	t_select	*s;
-
-	if (ac < 2)
-		return (display_usage());
-	s = init_select(av, ac -1);
-	enable_raw_mode(s->original);
-	ft_putstr_fd(s->tc->c_hide, STDERR_FILENO);
-	select_loop(s);
-	ft_putstr_fd(s->tc->c_default, STDERR_FILENO);
-	disable_raw_mode(s->original);
-	print_dlist(s);
-	return (0);
+	(*s->cursor)->is_selected = !(*s->cursor)->is_selected;
 }

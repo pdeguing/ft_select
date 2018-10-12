@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 12:57:38 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/11 15:45:49 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/11 19:18:51 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void		display_name(t_select *s, t_dlist *current, int fd)
 	if (current->is_selected)
 		ft_putstr_fd(s->tc->reverse, fd);
 	ft_putstr_fd(current->name, fd);
-	while (len <= s->min_col)
+	while (len <= s->max_len)
 	{
 		ft_putstr_fd(" ", fd);
 		len++;
@@ -34,20 +34,21 @@ void	display_dlist(t_select *s, int w_col, int w_row)
 {
 	t_dlist		*head;
 	t_dlist		*current;
-	int			p_col;
 	int			i;
 
-	if (s->min_col > w_col)
+	if (s->max_len > w_col)
 		return ;
-	p_col = w_col / (s->min_col + 2);
-	if (p_col == 1 && s->min_row > w_row)
+	s->p_col = w_col / (s->max_len + 2);
+	if (s->p_col > s->lst_size)
+		s->p_col = s->lst_size;
+	if ((s->lst_size / s->p_col) > w_row)
 		return ;
 	head = *s->dlist;
 	current = head;
 	while (1)
 	{
 		i = 0;
-		while (i < p_col)
+		while (i < s->p_col)
 		{
 			display_name(s, current, STDERR_FILENO);
 			if (current->next == head)

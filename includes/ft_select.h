@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 10:11:36 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/11 15:34:57 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/11 19:06:24 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,22 @@
 # define ENTER_KEY		10
 # define ESC_KEY		27
 # define SPACE_KEY		32
+# define UP_KEY			107
+# define DOWN_KEY		106
+# define LEFT_KEY		104
+# define RIGHT_KEY		108
+# define TOTAL_KEYS		6
 
 /*
 ** TYPEDEF
 */
 
-typedef struct s_select	t_select;
-typedef struct s_tcaps	t_tcaps;
-typedef struct s_dlist	t_dlist;
-typedef struct termios	t_termios;
-typedef struct winsize	t_winsize;
+typedef struct s_select		t_select;
+typedef struct s_tcaps		t_tcaps;
+typedef struct s_dlist		t_dlist;
+typedef struct termios		t_termios;
+typedef struct winsize		t_winsize;
+typedef struct s_dispatch	t_dispatch;
 
 /*
 ** GLOBAL STRUCTURE
@@ -45,10 +51,29 @@ struct s_select
 	t_tcaps		*tc;
 	t_termios	*original;
 	t_dlist		**dlist;
+	int			lst_size;
+	int			max_len;
+	int			p_col;
 	t_dlist		**cursor;
-	int			min_col;
-	int			min_row;
+	t_dispatch	*key_handlers;
 };
+
+/*
+** KEY HANDLERS
+*/
+
+struct s_dispatch
+{
+	int			key;
+	void		(*f)(t_select *);
+};
+
+void			handle_enter(t_select *s);
+void			handle_space(t_select *s);
+void			handle_up(t_select *s);
+void			handle_down(t_select *s);
+void			handle_left(t_select *s);
+void			handle_right(t_select *s);
 
 /*
 ** TERMINAL CAPABILITIES
@@ -86,6 +111,9 @@ struct s_dlist
 };
 
 t_winsize			get_winsize(void);
+
+int					get_key(void);
+void				handle_key(t_select *s);
 
 void				remove_node(t_dlist **pcursor);
 void				get_dlist(t_select *s, char **av, int n);
