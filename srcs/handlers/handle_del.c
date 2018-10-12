@@ -1,49 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   select_loop.c                                      :+:      :+:    :+:   */
+/*   handle_del.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/08 11:02:43 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/12 09:36:06 by pdeguing         ###   ########.fr       */
+/*   Created: 2018/10/12 09:33:05 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/10/12 09:38:27 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void	select_loop(t_select *s)
+void	handle_del(t_select *s)
 {
-	t_winsize	w;
-	int			i;
-
-	while (1)
+	if ((*s->cursor)->next == *s->cursor)
 	{
-		i = 0;
-		w = get_winsize();
-		ft_putstr_fd(s->tc->c_save, 2);
+		ft_putchar_fd('\r', STDERR_FILENO);
 		ft_putstr_fd(s->tc->clear_down, STDERR_FILENO);
-		display_dlist(s, w.ws_col, w.ws_row);
-		ft_putstr_fd(s->tc->c_restore, 2);
-		handle_key(s);
+		return ;
 	}
+	if (*s->dlist == *s->cursor)
+		*s->dlist = (*s->cursor)->next;
+	remove_node(s->cursor);
+	s->lst_size--;
 }
-
-
-
-
-
-
-/*
-		if (c == 'c')
-			ft_putstr_fd(s->tc->clear_all, STDERR_FILENO);
-		if (c == ESC_KEY)
-		{
-			ft_putchar_fd('\r', STDERR_FILENO);
-			ft_putstr_fd(s->tc->clear_down, STDERR_FILENO);
-			exit(EXIT_SUCCESS) ;
-		}
-		if (c == 100)
-		{
-		}
-		*/

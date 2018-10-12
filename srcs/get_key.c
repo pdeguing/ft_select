@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 16:43:39 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/11 18:57:54 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/12 09:52:41 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int		get_special_key(void)
 {
-	char	c;
+	int		c;
 
 	read(0, &c, 1);
 	if (c != '[')
@@ -28,12 +28,18 @@ static int		get_special_key(void)
 		return (RIGHT_KEY);
 	if (c == 'D')
 		return (LEFT_KEY);
+	if (c == '3')
+	{
+		read(0, &c, 1);
+		if (c == '~')
+			return (DEL_KEY);
+	}
 	return (ESC_KEY);
 }
 
 int		get_key(void)
 {
-	char	c;
+	int		c;
 
 	read(0, &c, 1);
 	if (c == ESC_KEY)

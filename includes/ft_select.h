@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 10:11:36 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/11 19:06:24 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/12 09:52:41 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <sys/ioctl.h>
 # include "../libft/includes/libft.h"
 
-# define BACKSPACE_KEY	8
 # define ENTER_KEY		10
 # define ESC_KEY		27
 # define SPACE_KEY		32
@@ -29,7 +28,10 @@
 # define DOWN_KEY		106
 # define LEFT_KEY		104
 # define RIGHT_KEY		108
-# define TOTAL_KEYS		6
+# define BACKSPACE_KEY	127
+# define DEL_KEY		120
+
+# define TOTAL_KEYS		8
 
 /*
 ** TYPEDEF
@@ -74,6 +76,7 @@ void			handle_up(t_select *s);
 void			handle_down(t_select *s);
 void			handle_left(t_select *s);
 void			handle_right(t_select *s);
+void			handle_del(t_select *s);
 
 /*
 ** TERMINAL CAPABILITIES

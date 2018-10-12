@@ -66,7 +66,7 @@
 * if env not set properly, display error env
 
 ### Input keys:
-* handle ~~arrows~~ and del/backspace
+* ~~handle arrows and del/backspace~~
 
 ### Exit:
 * create proper exit function and use for each appropriate event
