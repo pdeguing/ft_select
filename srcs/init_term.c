@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 14:56:33 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/12 09:52:40 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/13 09:59:25 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static void		init_dispatch(t_dispatch **key_handlers)
 		{LEFT_KEY, &handle_left},
 		{RIGHT_KEY, &handle_right},
 		{BACKSPACE_KEY, &handle_del},
-		{DEL_KEY, &handle_del}
+		{DEL_KEY, &handle_del},
+		{ESC_KEY, &handle_esc}
 	};
 
 	*key_handlers = new;

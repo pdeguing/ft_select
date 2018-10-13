@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/08 11:02:43 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/12 13:08:41 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/13 10:40:23 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,3 @@ void	select_loop(t_select *s)
 		handle_key(s);
 	}
 }
-
-
-
-
-
-
-/*
-		if (c == 'c')
-			ft_putstr_fd(s->tc->clear_all, STDERR_FILENO);
-		if (c == ESC_KEY)
-		{
-			ft_putchar_fd('\r', STDERR_FILENO);
-			ft_putstr_fd(s->tc->clear_down, STDERR_FILENO);
-			exit(EXIT_SUCCESS) ;
-		}
-		if (c == 100)
-		{
-		}
-		*/

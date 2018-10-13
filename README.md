@@ -69,4 +69,4 @@
 * ~~handle arrows and del/backspace~~
 
 ### Exit:
-* create proper exit function and use for each appropriate event
+* ~~create proper exit function and use for each appropriate event~~
