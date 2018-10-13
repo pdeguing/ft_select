@@ -56,14 +56,14 @@
 	* ~~nline++~~
 * ~~print narg / nline per line~~
 * ~~if win_height < nline print error display~~
-* find a way to update on resizing even if no key is pressed
+* ~~find a way to update on resizing even if no key is pressed~~
 
 ### Signal management:
-* catch quit signal and close with clean_exit if appropriate
-* interrupt with ctl z and restore with fg
+* ~~catch quit signal and close with clean_exit if appropriate~~
+* ~~interrupt with ctl z and restore with fg~~
 
 ### Env management:
-* if env not set properly, display error env
+* ~~if env not set properly, display error env~~
 
 ### Input keys:
 * ~~handle arrows and del/backspace~~

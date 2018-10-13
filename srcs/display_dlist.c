@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 12:57:38 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/11 19:18:51 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/13 13:43:02 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	display_dlist(t_select *s, int w_col, int w_row)
 	t_dlist		*current;
 	int			i;
 
-	if (s->max_len > w_col)
+	if (s->max_len + 2 > w_col)
 		return ;
 	s->p_col = w_col / (s->max_len + 2);
 	if (s->p_col > s->lst_size)
@@ -57,6 +57,6 @@ void	display_dlist(t_select *s, int w_col, int w_row)
 			ft_putchar_fd(' ', STDERR_FILENO);
 			i++;
 		}
-		ft_putchar_fd('\n', STDERR_FILENO);
+		ft_putstr_fd("\n", STDERR_FILENO);
 	}
 }

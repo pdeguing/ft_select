@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 02:50:34 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/11 19:02:15 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/13 14:18:19 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		push_node(t_dlist **head, char *name)
 
 	new = (t_dlist *)malloc(sizeof(t_dlist));
 	if (new == NULL)
-		perror("push_node");
+		exit_perror("push_node");
 	new->prev = NULL;
 	new->name = ft_strdup(name);
 	new->is_selected = false;

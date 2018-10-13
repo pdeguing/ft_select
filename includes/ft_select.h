@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 10:11:36 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/13 10:51:58 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/13 14:26:29 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <termios.h>
 # include <termcap.h>
 # include <stdbool.h>
+# include <signal.h>
 # include <sys/ioctl.h>
 # include "../libft/includes/libft.h"
 
@@ -30,6 +31,7 @@
 # define RIGHT_KEY		4414235
 # define BACKSPACE_KEY	127
 # define DEL_KEY		2117294875
+# define REFRESH_KEY	114
 
 # define TOTAL_KEYS		9
 
@@ -51,7 +53,6 @@ typedef struct s_dispatch	t_dispatch;
 struct s_select
 {
 	t_tcaps		*tc;
-	t_termios	*original;
 	t_dlist		**dlist;
 	int			lst_size;
 	int			max_len;
@@ -80,6 +81,13 @@ void			handle_del(t_select *s);
 void			handle_esc(t_select *s);
 
 /*
+** SIGNAL HANDLERS
+*/
+
+void				handle_winch(int sig);
+void				handle_cont(int sig);
+
+/*
 ** TERMINAL CAPABILITIES
 */
 
@@ -95,10 +103,9 @@ struct s_tcaps
 	char	*standout;
 	char	*underlined;
 	char	*reverse;
+	char	*c_return;
 	char	*c_save;
 	char	*c_restore;
-	char	*c_hide;
-	char	*c_default;
 	char	*reset;
 };
 
@@ -123,11 +130,13 @@ void				get_dlist(t_select *s, char **av, int n);
 void				display_dlist(t_select *s, int w_col, int w_row);
 void				print_dlist(t_select *s);
 
-void				enable_raw_mode(t_select *s);
-void				disable_raw_mode(t_select *s);
+void				enable_raw_mode(void);
+void				disable_raw_mode(void);
 
 t_select			*init_select(char **av, int n);
+
 void				exit_select(t_select *s);
+void				exit_perror(char *str);
 
 void				select_loop(t_select *s);
 

@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select.c                                        :+:      :+:    :+:   */
+/*   exit_perror.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/06 10:08:08 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/13 14:01:44 by pdeguing         ###   ########.fr       */
+/*   Created: 2018/10/13 14:18:26 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/10/13 14:18:53 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-static void		init_signals(void)
+void	exit_perror(char *str)
 {
-	signal(SIGWINCH, &handle_winch);
-	signal(SIGCONT, &handle_cont);
-}
-
-int		main(int ac, char **av)
-{
-	t_select	*s;
-
-	init_signals();
-	if (ac < 2)
-		return (display_usage());
-	s = init_select(av, ac - 1);
-	enable_raw_mode();
-	select_loop(s);
-	exit_select(s);
-	return (0);
+	perror(str);
+	exit(EXIT_FAILURE);
 }

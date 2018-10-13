@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select.c                                        :+:      :+:    :+:   */
+/*   handle_signals.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/06 10:08:08 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/13 14:01:44 by pdeguing         ###   ########.fr       */
+/*   Created: 2018/10/13 12:14:36 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/10/13 14:00:42 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-static void		init_signals(void)
+void	handle_winch(int sig)
 {
-	signal(SIGWINCH, &handle_winch);
-	signal(SIGCONT, &handle_cont);
+	int		c;
+
+	c = REFRESH_KEY;
+	if (sig == SIGWINCH)
+	{
+		ioctl(0, TIOCSTI, &c);
+	}
 }
 
-int		main(int ac, char **av)
+void	handle_cont(int sig)
 {
-	t_select	*s;
-
-	init_signals();
-	if (ac < 2)
-		return (display_usage());
-	s = init_select(av, ac - 1);
-	enable_raw_mode();
-	select_loop(s);
-	exit_select(s);
-	return (0);
+	if (sig == SIGCONT)
+	{
+		enable_raw_mode();
+	}
 }
