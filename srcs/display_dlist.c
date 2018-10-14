@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 12:57:38 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/13 13:43:02 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/13 19:21:45 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,12 @@ static void		display_name(t_select *s, t_dlist *current, int fd)
 	ft_putstr_fd(s->tc->reset, fd);
 }
 
-void	display_dlist(t_select *s, int w_col, int w_row)
+void			display_dlist(t_select *s)
 {
 	t_dlist		*head;
 	t_dlist		*current;
 	int			i;
 
-	if (s->max_len + 2 > w_col)
-		return ;
-	s->p_col = w_col / (s->max_len + 2);
-	if (s->p_col > s->lst_size)
-		s->p_col = s->lst_size;
-	if ((s->lst_size / s->p_col) > w_row)
-		return ;
 	head = *s->dlist;
 	current = head;
 	while (1)

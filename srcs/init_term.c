@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 14:56:33 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/13 14:26:16 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/13 20:03:11 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void		init_term(t_tcaps **tc)
 		exit_perror("init_term");
 	tname = getenv("TERM");
 	if (tname == NULL)
-		exit_perror("TERM unset");
+		exit_perror("TERM environment variable is not set");
 	if (tgetent(buf, tname) != 1)
 		exit_perror("TERM invalid");
 	new->clear_down = tgetstr("cd", NULL);
@@ -55,7 +55,7 @@ static void		init_dispatch(t_dispatch **key_handlers)
 	*key_handlers = new;
 }
 
-t_select	*init_select(char **av, int n)
+t_select		*init_select(char **av, int n)
 {
 	t_select	*s;
 

@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 16:50:29 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/13 12:21:11 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/13 18:49:00 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int		get_key(void)
 	return (buf);
 }
 
-void	handle_key(t_select *s)
+void			handle_key(t_select *s)
 {
 	int		key;
 	int		i;

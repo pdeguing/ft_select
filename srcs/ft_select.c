@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 10:08:08 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/13 15:53:36 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/10/13 19:47:49 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 static void		init_signals(void)
 {
+	signal(SIGINT, &handle_int);
 	signal(SIGWINCH, &handle_winch);
+	signal(SIGTSTP, &handle_tstp);
 	signal(SIGCONT, &handle_cont);
 }
 
-int		main(int ac, char **av)
+int				main(int ac, char **av)
 {
 	t_select	*s;
 

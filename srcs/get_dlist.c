@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_dlist.c                                         :+:      :+:    :+:   */
+/*   get_dlist.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/10 02:50:34 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/10/13 14:18:19 by pdeguing         ###   ########.fr       */
+/*   Created: 2018/10/13 18:49:21 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/10/13 18:49:59 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ static void		push_node(t_dlist **head, char *name)
 	if (*head != NULL)
 		(*head)->prev = new;
 	*head = new;
-
 }
 
-void	get_dlist(t_select *s, char **av, int n)
+void			get_dlist(t_select *s, char **av, int n)
 {
 	t_dlist	*tail;
 	int		len;
